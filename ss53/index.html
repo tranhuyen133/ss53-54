@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Đồng bộ 
+        1. Đồng bộ : synchronous
+        Ngôn ngữ javascript là 1 ngôn  ngữ đơn luồng (single thread : chỉ 1 luồng duy nhất , luồng code chạy từ trái qua phải và từ trên xuống dưới)
+        2. Bất đồng bộ : asynchronous
+        - Những vc cần time xử lí như các hàm settimeout, setInterval, readfile, writefile , gửi request lên server , các thao tác tương tác database
+        1. dùng callback : là 1 hàm đc truyền vào làm đối số của hàm khác
+        2. promise
+        3. async-await
+    -->
+    <script>
+        // console.log("CV1");
+        // setTimeout(()=> {
+        //     console.log("CV2");
+        // },1000)
+        // console.log("CV3");
+        function task1(a) {
+            // cần time xử lí cv1
+            // cv1 cần 2s để thực thi
+            setTimeout(() => {
+                console.log("cv1 đc thực thi");
+                a();
+            },2000);
+           
+        }
+        function task2() {
+                console.log("đc thực thi sau khi task1 hoàn thành");
+            }
+            // task1(task2);
+            setTimeout(()=>{
+                 console.log("cviec 1 thuc thi");
+                 setTimeout(()=>{
+                    console.log("cviec 2 dc thuc thi sau khi cvc 1 hoan thanh");
+              
+                 setTimeout(()=>{
+                    console.log("cviec 3 dc thuc thi sau khi cv 2 hoan thanh");
+                 },7000)
+            },3000);
+        },1000);
+        // khiviet nhieu ham xu li long nhau thi se roi vao tinh trang
+        // call back (hell) dia nguc
+        let arr =[1,2,3,4,5];
+        // let result =arr.map((item)=>{
+         //   return item*2
+        //})
+        // dung callback viet 1 ham xu li tuongtu nhu ham map
+        function myMap (a,callback){
+            let result=[];
+            for(const item of a){
+                result.push(callback(value));
+            }
+            return result;
+        }
+        myMap(arr,(item)=>item*2)
+        // dung callback de custom lai ham filter-loc
+        let result1 =arr.filter((item)=>item>5);
+        console.log("seresult1",result1);//[]
+    </script>
+</body>
+</html>
